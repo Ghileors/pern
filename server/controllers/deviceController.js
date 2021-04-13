@@ -8,7 +8,7 @@ class DeviceController {
     try {
       let { name, price, brandId, typeId, info } = req.body;
       const { img } = req.files;
-      let fileName = `${uuid.v4()}.jpg`;
+      let fileName = uuid.v4() + '.jpg';
       img.mv(path.resolve(__dirname, '..', 'static', fileName));
 
       const device = await Device.create({
@@ -21,18 +21,18 @@ class DeviceController {
 
       if (info) {
         info = JSON.parse(info);
-        info.forEach((item) => {
+        info.forEach((i) =>
           DeviceInfo.create({
-            title: item.title,
-            description: item.description,
+            title: i.title,
+            description: i.description,
             deviceId: device.id,
-          });
-        });
+          })
+        );
       }
 
       return res.json(device);
-    } catch (error) {
-      next(ApiError.badRequest(error.message));
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
     }
   }
 
@@ -65,7 +65,7 @@ class DeviceController {
 
     if (brandId && typeId) {
       devices = await Device.findAndCountAll({
-        where: { brandId, typeId },
+        where: { typeId, brandId },
         limit,
         offset,
       });

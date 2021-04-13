@@ -18,6 +18,7 @@ const Admin = () => {
       >
         Add brand
       </Button>
+
       <Button
         variant={'outline-dark'}
         className="mt-4 p-2"
@@ -25,6 +26,7 @@ const Admin = () => {
       >
         Add type
       </Button>
+
       <Button
         variant={'outline-dark'}
         className="mt-4 p-2"
@@ -32,12 +34,15 @@ const Admin = () => {
       >
         Add device
       </Button>
+
       <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
-      <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} />
+
       <CreateDevice
         show={deviceVisible}
         onHide={() => setDeviceVisible(false)}
       />
+
+      <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} />
     </Container>
   );
 };

@@ -6,14 +6,14 @@ module.exports = function (req, res, next) {
   }
 
   try {
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.headers.authorization.split(' ')[1]; // Bearer asfasnfkajsfnjk
     if (!token) {
-      return res.status(401).json({ messaje: 'User is not logged in' });
+      return res.status(401).json({ message: 'User is not logged in' });
     }
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.user = decoded;
     next();
-  } catch (error) {
-    res.status(401).json({ messaje: 'User is not logged in' });
+  } catch (e) {
+    res.status(401).json({ message: 'User is not logged in' });
   }
 };

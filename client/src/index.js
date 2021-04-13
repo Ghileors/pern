@@ -1,10 +1,11 @@
 import React, { createContext } from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import DeviceStore from './store/DeviceStore';
 import UserStore from './store/UserStore';
+import DeviceStore from './store/DeviceStore';
 
 export const Context = createContext(null);
+
 render(
   <Context.Provider
     value={{

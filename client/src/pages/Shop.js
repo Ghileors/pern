@@ -1,10 +1,39 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import React, { useContext, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import { Container, Row, Col } from 'react-bootstrap';
+import { fetchBrands, fetchDevices, fetchTypes } from '../http/deviceAPI';
+import { Context } from '..';
+import Pages from '../components/Pages';
+import TypeBar from '../components/TypeBar';
 import BrandBar from '../components/BrandBar';
 import DeviceList from '../components/DeviceList';
-import TypeBar from '../components/TypeBar';
 
-const Shop = () => {
+const Shop = observer(() => {
+  const { device } = useContext(Context);
+
+  useEffect(() => {
+    fetchTypes().then((data) => device.setTypes(data));
+    fetchBrands().then((data) => device.setBrands(data));
+    fetchDevices(null, null, 1, 2).then((data) => {
+      device.setDevices(data.rows);
+      device.setTotalCount(data.count);
+    });
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    fetchDevices(
+      device.selectedType.id,
+      device.selectedBrand.id,
+      device.page,
+      2
+    ).then((data) => {
+      device.setDevices(data.rows);
+      device.setTotalCount(data.count);
+    });
+    // eslint-disable-next-line
+  }, [device.page, device.selectedType, device.selectedBrand]);
+
   return (
     <Container>
       <Row className="mt-2">
@@ -14,10 +43,11 @@ const Shop = () => {
         <Col md={9}>
           <BrandBar />
           <DeviceList />
+          <Pages />
         </Col>
       </Row>
     </Container>
   );
-};
+});
 
 export default Shop;
