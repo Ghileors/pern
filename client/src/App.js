@@ -6,6 +6,7 @@ import { Context } from './index';
 import { checkAuth } from './http/userAPI';
 import NavBar from './components/NavBar';
 import AppRouter from './components/AppRouter';
+import './index.scss';
 
 const App = observer(() => {
   const { user } = useContext(Context);

@@ -1,0 +1,21 @@
+@import './pages//DevicePage/DevicePage.scss';
+
+.form-container {
+  width: 600px;
+}
+
+.logo {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.brand-name,
+.type-name {
+  cursor: pointer;
+}
+
+.device-item {
+  width: 150px;
+  cursor: pointer;
+}

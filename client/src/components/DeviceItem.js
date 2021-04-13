@@ -13,7 +13,7 @@ const DeviceItem = ({ device }) => {
       className={'mt-3'}
       onClick={() => history.push(`${DEVICE_ROUTE}/${device.id}`)}
     >
-      <Card style={{ width: 150, cursor: 'pointer' }} border={'light'}>
+      <Card className="device-item" border={'light'}>
         <Image
           width={150}
           height={150}

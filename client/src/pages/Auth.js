@@ -40,10 +40,10 @@ const Auth = observer(() => {
 
   return (
     <Container
-      className="d-flex justify-content-center align-items-center"
+      className="d-flex justify-content-center align-items-center "
       style={{ height: window.innerHeight - 54 }}
     >
-      <Card style={{ width: 600 }} className="p-5">
+      <Card className="p-5 form-container">
         <h2 className="m-auto">{isLogin ? 'Authorization' : 'Registration'}</h2>
         <Form className="d-flex flex-column">
           <Form.Control

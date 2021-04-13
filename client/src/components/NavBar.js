@@ -17,18 +17,11 @@ const NavBar = observer(() => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <NavLink
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-            textTransform: 'uppercase',
-          }}
-          to={SHOP_ROUTE}
-        >
+        <NavLink className="logo" to={SHOP_ROUTE}>
           Kamazon
         </NavLink>
         {user.isAuth ? (
-          <Nav className="ml-auto" style={{ color: 'white' }}>
+          <Nav className="ml-auto">
             <Button
               variant={'outline-light'}
               onClick={() => history.push(ADMIN_ROUTE)}
@@ -44,7 +37,7 @@ const NavBar = observer(() => {
             </Button>
           </Nav>
         ) : (
-          <Nav className="ml-auto" style={{ color: 'white' }}>
+          <Nav className="ml-auto">
             <Button
               variant={'outline-light'}
               onClick={() => history.push(LOGIN_ROUTE)}
